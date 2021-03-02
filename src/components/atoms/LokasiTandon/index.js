@@ -1,27 +1,33 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {ICCeklis, ICError, ICSuccess, ICWarning} from '../../../assets/icon';
+import {
+  ICCeklis,
+  ICError,
+  ICSuccess,
+  WarningIndikator,
+} from '../../../assets/icon';
 
-const LokasiTandon = ({type}) => {
+const LokasiTandon = ({data, onPress}) => {
+  data.peringatan;
   const Icon = () => {
-    if (type === 'Ceklis') {
+    if (data.peringatan === '0') {
       return <ICSuccess />;
-    }
-    if (type === 'Warning') {
+    } else if (data.peringatan === '1') {
+      return <WarningIndikator />;
+    } else {
       return <ICError />;
     }
-    return <ICError />;
   };
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.wrapper}>
-        <Text style={styles.title}>Kp. Sukapura Desa Mekarjaya </Text>
+        <Text style={styles.title}>{data.alamat}</Text>
         <View style={styles.wrapperLogo}>
           <Icon style={styles.logo} />
         </View>
       </View>
-      <Text style={styles.desc}>kekeruhan : 200</Text>
+      <Text style={styles.desc}>kekeruhan : {data.kekeruhan}</Text>
     </TouchableOpacity>
   );
 };
@@ -30,7 +36,7 @@ export default LokasiTandon;
 
 const styles = StyleSheet.create({
   container: {
-    width: 360,
+    width: '100%',
     height: 60,
     backgroundColor: 'white',
     marginBottom: 18,

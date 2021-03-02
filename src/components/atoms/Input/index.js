@@ -19,7 +19,8 @@ const Input = ({type, value, onChangeText, secureTextEntry}) => {
         style={styles.input(border)}
         value={value}
         onChangeText={onChangeText}
-        secureTextEntry={secureTextEntry}></TextInput>
+        secureTextEntry={secureTextEntry}
+      />
     </View>
   );
 };

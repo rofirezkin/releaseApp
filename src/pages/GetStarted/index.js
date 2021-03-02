@@ -1,32 +1,36 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import {ILHello, ILLogo} from '../../assets/illustration';
-import {Button} from '../../components/atoms';
+import {Button, Gap} from '../../components/atoms';
 
 const GetStarted = ({navigation}) => {
   return (
     <View styles={styles.wrapper}>
-      <View style={styles.page}>
-        <View style={styles.background}>
-          <ILLogo style={styles.logo} />
-          <ILHello style={styles.hello} />
-        </View>
-      </View>
-      <View style={styles.wrapper2}>
-        <View style={styles.wraps}>
-          <View style={styles.content}>
-            <Text style={styles.desc}>let's connect</Text>
-            <Text style={styles.desc2}>with tandon monitoring</Text>
-            <Text style={styles.desc3}>
-              monitoring application at each location
-            </Text>
-            <Button
-              title="Let's Start"
-              onPress={() => navigation.navigate('Login')}
-            />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.page}>
+          <View style={styles.background}>
+            <ILLogo style={styles.logo} />
+            <ILHello style={styles.hello} />
           </View>
         </View>
-      </View>
+        <View style={styles.wrapper2}>
+          <View style={styles.wraps}>
+            <View style={styles.content}>
+              <Text style={styles.desc}>let's connect</Text>
+              <Text style={styles.desc2}>with tandon monitoring</Text>
+              <Text style={styles.desc3}>
+                monitoring application at each location
+              </Text>
+              <Button
+                title="Let's Start"
+                onPress={() => navigation.navigate('Login')}
+              />
+              <Gap height={15} />
+            </View>
+          </View>
+        </View>
+      </ScrollView>
     </View>
   );
 };
@@ -57,7 +61,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#2B3695',
     borderTopLeftRadius: 100,
     alignItems: 'center',
-    height: 550,
+    height: '100%',
   },
   desc: {
     color: 'white',

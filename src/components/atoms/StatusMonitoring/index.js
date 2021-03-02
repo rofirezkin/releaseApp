@@ -2,14 +2,14 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {ICTrafik} from '../../../assets/icon';
 
-const StatusMonitoring = ({status}) => {
+const StatusMonitoring = ({status, data}) => {
   return (
     <View style={styles.container}>
       <ICTrafik />
       <Text style={styles.status}>{status}</Text>
       <View style={styles.tandon}>
-        <Text style={styles.number}>174</Text>
-        <Text style={styles.desc}>LMS</Text>
+        <Text style={styles.number}>{data}</Text>
+        <Text style={styles.desc}>NTUs</Text>
       </View>
     </View>
   );

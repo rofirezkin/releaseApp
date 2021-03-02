@@ -1,27 +1,30 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import {ILKonfirmasi, ILLogo} from '../../assets/illustration';
 import {Button} from '../../components/atoms';
 
 const Sukses = ({navigation}) => {
   return (
     <View style={styles.wrapper}>
-      <View style={styles.page}>
-        <View style={styles.background}>
-          <ILLogo style={styles.logo} />
-          <ILKonfirmasi style={styles.hello} />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.page}>
+          <View style={styles.background}>
+            <ILLogo style={styles.logo} />
+            <ILKonfirmasi style={styles.hello} />
+          </View>
         </View>
-      </View>
-      <View style={styles.wrapper2}>
-        <View style={styles.content}>
-          <Text style={styles.desc}>Selamat !</Text>
-          <Text style={styles.desc3}>Anda Berhasil Membersihkan Toran</Text>
-          <Text style={styles.desc2}>
-            Dan Sudah Mengkonfirmasi Ke pelanggan
-          </Text>
-          <Button title="Home" onPress={() => navigation.navigate('Home')} />
+        <View style={styles.wrapper2}>
+          <View style={styles.content}>
+            <Text style={styles.desc}>Selamat !</Text>
+            <Text style={styles.desc3}>Anda Berhasil Membersihkan Toran</Text>
+            <Text style={styles.desc2}>
+              Dan Sudah Mengkonfirmasi Ke pelanggan
+            </Text>
+            <Button title="Home" onPress={() => navigation.navigate('Home')} />
+          </View>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 };
@@ -53,7 +56,7 @@ const styles = StyleSheet.create({
   },
   content: {
     backgroundColor: '#2B3695',
-    height: 400,
+    height: 300,
     borderTopLeftRadius: 100,
     alignItems: 'center',
   },

@@ -1,22 +1,57 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {ILMap} from '../../assets/illustration';
 import {BtnSend, Gap, LokasiTandon} from '../../components/atoms';
-import {InputSearch} from '../../components/molecules';
 import Header from '../../components/molecules/Header';
+import {Fire} from '../../config';
 
 const Lokasi = ({navigation}) => {
+  const [dataTandon, setdataTandon] = useState([]);
+
+  useEffect(() => {
+    const ref = Fire.database().ref('dataTandon/');
+    const listener = ref.on('value', (snapshot) => {
+      const fetchedTasks = [];
+      snapshot.forEach((childSnapshot) => {
+        const key = childSnapshot.key;
+        const data = childSnapshot.val();
+        fetchedTasks.push({id: key, ...data});
+      });
+      setdataTandon(fetchedTasks);
+    });
+    return () => ref.off('value', listener);
+  }, []);
+
+  // const getLokasiSeluruh = () => {
+  //   Fire.database()
+  //     .ref('dataTandon/')
+  //     .once('value')
+  //     .then((res) => {
+  //       if (res.val()) {
+  //         const oldData = res.val();
+  //         const data = [];
+  //         Object.keys(oldData).map((key) => {
+  //           data.push({
+  //             id: key,
+  //             data: oldData[key],
+  //           });
+  //         });
+  //         setdataTandon(data);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       showMessage(err.message);
+  //     });
+  // };
+
   return (
     <View style={styles.container}>
       <Header type="Lokasi" />
       <View style={styles.image}>
         <ILMap />
       </View>
-      <View style={styles.wrap}>
-        <InputSearch />
-        <BtnSend onPress={() => navigation.navigate('Monitoring')} />
-      </View>
+
       <View style={styles.wrapper}>
         <Gap height={16} />
         <Text style={styles.title}>Lokasi Monitoring : </Text>
@@ -25,12 +60,15 @@ const Lokasi = ({navigation}) => {
       <ScrollView>
         <View style={styles.content}>
           <View>
-            <Gap height={16} />
-            <LokasiTandon type="Ceklis" />
-            <LokasiTandon />
-            <LokasiTandon />
-            <LokasiTandon type="Ceklis" />
-            <LokasiTandon />
+            {dataTandon.map((data) => {
+              return (
+                <LokasiTandon
+                  key={data.id}
+                  data={data}
+                  onPress={() => navigation.navigate('Monitoring', data)}
+                />
+              );
+            })}
           </View>
         </View>
       </ScrollView>
@@ -59,7 +97,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   content: {
-    paddingHorizontal: 19,
+    paddingHorizontal: 17,
   },
   wrapper: {
     paddingHorizontal: 19,

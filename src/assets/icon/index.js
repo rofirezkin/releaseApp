@@ -11,6 +11,9 @@ import ICError from './error.svg';
 import ICSend from './send.svg';
 import ICArrowBack from './arrow_back.svg';
 import ICTrafik from './trafik.svg';
+import WarningIndikator from './warningInd.svg';
+import JadwalProcess from './cached_kal.svg';
+import JadwalClean from './done_kal.svg';
 
 export {
   ICHomeActive,
@@ -26,4 +29,7 @@ export {
   ICSend,
   ICArrowBack,
   ICTrafik,
+  WarningIndikator,
+  JadwalClean,
+  JadwalProcess,
 };

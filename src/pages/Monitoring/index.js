@@ -1,67 +1,105 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {ICArrowBack} from '../../assets/icon';
+import {ScrollView} from 'react-native-gesture-handler';
 import {
   Arrow,
   Button,
   Gap,
   Header,
-  Indikator,
   StatusMonitoring,
+  Kalender,
 } from '../../components';
 
-const Monitoring = ({navigation}) => {
+const Monitoring = ({navigation, route}) => {
+  const dataMonitoring = route.params;
+  const peringatan = dataMonitoring.peringatan;
+
+  const GetPeringatan = () => {
+    if (peringatan === '0') {
+      return (
+        <View style={styles.keterangan}>
+          <Text style={styles.keteranganIndikator}>
+            Air Dalam keadaan bersih
+          </Text>
+        </View>
+      );
+    } else if (peringatan === '1') {
+      return (
+        <View style={styles.keterangan}>
+          <Text style={styles.keteranganIndikator}>
+            Air Dalam keadaan keruh
+          </Text>
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.keterangan}>
+          <Text style={styles.keteranganIndikator}>
+            Air Dalam Keadaan Kotor
+          </Text>
+        </View>
+      );
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Header type="Monitoring" />
       <View style={styles.arrow}>
-        <Arrow
-          style={styles.arrow}
-          onPress={() => navigation.navigate('Lokasi')}
-        />
+        <Arrow style={styles.arrow} onPress={() => navigation.goBack()} />
       </View>
       <View style={styles.content}>
-        <View style={styles.indikator}>
-          <View style={styles.boxIndikator}>
-            <Text style={styles.title}>Indikator :</Text>
-            <Indikator type="Bersih" />
-            <Text style={styles.title}>Keterangan :</Text>
-            <Gap height={6} />
-            <View style={styles.warnaKeterangan}>
-              <View style={styles.hijau}>
-                <Text style={styles.text}>Bersih</Text>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.indikator}>
+            <View style={styles.boxIndikator}>
+              <Text style={styles.title}>Indikator :</Text>
+              <View style={styles.keterangan(peringatan)}>
+                <GetPeringatan />
               </View>
-              <View style={styles.kuning}>
-                <Text style={styles.text}>Keruh</Text>
+              <Text style={styles.title}>Keterangan :</Text>
+              <Gap height={6} />
+              <View style={styles.warnaKeterangan}>
+                <View style={styles.hijau}>
+                  <Text style={styles.text}>Bersih</Text>
+                </View>
+                <View style={styles.kuning}>
+                  <Text style={styles.text}>Keruh</Text>
+                </View>
+                <View style={styles.merah}>
+                  <Text style={styles.text}>Kotor</Text>
+                </View>
               </View>
-              <View style={styles.merah}>
-                <Text style={styles.text}>Kotor</Text>
-              </View>
+              <Text style={styles.title}>Lokasi :</Text>
+              <Text style={styles.lokasi}>{dataMonitoring.alamat}</Text>
             </View>
-            <Text style={styles.title}>Lokasi :</Text>
-            <Text style={styles.lokasi}>
-              Kp. Sukapura Desa Mekarjaya RT 03 RW 04
-            </Text>
           </View>
-          <View style={styles.warpStatus}>
-            <StatusMonitoring status="DATA" />
-            <StatusMonitoring status="KEKERUHAN" />
+          <View>
+            <View style={styles.warpStatus}>
+              <StatusMonitoring status="DATA" />
+              <StatusMonitoring
+                status="KEKERUHAN"
+                data={dataMonitoring.kekeruhan}
+              />
+            </View>
+            <Gap height={20} />
+            <Text style={styles.title}>Jadwal Pembersihan :</Text>
+            <Kalender
+              bulan={dataMonitoring.jadwal}
+              bulanKedua={dataMonitoring.jadwal2}
+            />
+            <View style={styles.konfirmasi}>
+              <Text style={styles.textKonfirmasi}>
+                Konfirmasi ke pelanggan tandon sudah Dibersihkan
+              </Text>
+              <Button
+                title="Konfirmasi"
+                onPress={() => navigation.navigate('Sukses')}
+              />
+            </View>
+
+            <Gap height={20} />
           </View>
-          <Gap height={20} />
-          <Text style={styles.title}>Jadwal Pembersihan :</Text>
-          <Text>Calender</Text>
-          <View style={styles.konfirmasi}>
-            <Text style={styles.textKonfirmasi}>
-              Konfirmasi ke pelanggan tandon sudah Dibersihkan
-            </Text>
-          </View>
-        </View>
-        <View style={styles.button}>
-          <Button
-            title="Konfirmasi"
-            onPress={() => navigation.navigate('Sukses')}
-          />
-        </View>
+        </ScrollView>
       </View>
     </View>
   );
@@ -82,9 +120,10 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   content: {
-    paddingHorizontal: 19,
-    marginTop: 36,
-    alignItems: 'center',
+    paddingHorizontal: 10,
+    paddingTop: 20,
+
+    paddingBottom: 50,
   },
   konfirmasi: {
     alignItems: 'center',
@@ -96,12 +135,13 @@ const styles = StyleSheet.create({
     fontFamily: 'Assistant-SemiBold',
     color: '#3F3D56',
     marginBottom: 14,
+    paddingTop: 10,
   },
   indikator: {
-    width: 342,
+    width: '100%',
     height: 252,
-    backgroundColor: '#FFFCFC',
     borderRadius: 10,
+    backgroundColor: '#FFFCFC',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -109,11 +149,10 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.27,
     shadowRadius: 4.65,
-
     elevation: 6,
   },
   boxIndikator: {
-    paddingHorizontal: 33,
+    paddingHorizontal: 13,
     paddingVertical: 5,
   },
   title: {
@@ -121,15 +160,16 @@ const styles = StyleSheet.create({
     fontFamily: 'Assistant-SemiBold',
     marginBottom: 8,
   },
-  keterangan: {
-    backgroundColor: '#4BD8A5',
-    width: 276,
+  keterangan: (peringatan) => ({
+    backgroundColor:
+      peringatan === 0 ? '#4BD8A5' : peringatan === 1 ? '#ECD55C' : '#F86D70',
+    width: '100%',
     height: 76,
     borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 8,
-  },
+  }),
   keteranganIndikator: {
     fontSize: 15,
     fontFamily: 'Assistant-SemiBold',

@@ -8,6 +8,7 @@ import BtnSend from './BtnSend';
 import StatusMonitoring from './StatusMonitoring';
 import JadwalLokasiTandon from './JadwalLokasiTandon';
 import Link from './Link';
+import Kalender from './Kalender';
 
 export {
   Button,
@@ -20,4 +21,5 @@ export {
   StatusMonitoring,
   JadwalLokasiTandon,
   Link,
+  Kalender,
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {ICCeklis, ICWarning} from '../../../assets/icon';
 
-const GrafikData = ({status}) => {
+const GrafikData = ({status, data}) => {
   const Icon = () => {
     if (status === 'DIBERSIHKAN') {
       return <ICCeklis />;
@@ -18,7 +18,7 @@ const GrafikData = ({status}) => {
       <Icon />
       <Text style={styles.status}>{status}</Text>
       <View style={styles.tandon}>
-        <Text style={styles.number}>174</Text>
+        <Text style={styles.number}>{data}</Text>
         <Text style={styles.desc}>Tandon</Text>
       </View>
     </View>
@@ -30,11 +30,10 @@ export default GrafikData;
 const styles = StyleSheet.create({
   container: {
     height: 130,
-    width: 170,
+    width: '45%',
     backgroundColor: '#FFFCFC',
     alignSelf: 'flex-start',
     padding: 8,
-    marginRight: 18,
     borderRadius: 10,
     shadowColor: '#000',
     shadowOffset: {

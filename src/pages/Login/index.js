@@ -4,6 +4,8 @@ import {ILLogo} from '../../assets/illustration';
 import {Button, Gap, Input} from '../../components/atoms';
 import {useForm} from '../../utils';
 import {Fire} from '../../config';
+import {showMessage} from 'react-native-flash-message';
+
 const Login = ({navigation}) => {
   const [form, setForm] = useForm({email: '', password: ''});
 
@@ -11,19 +13,23 @@ const Login = ({navigation}) => {
     Fire.auth()
       .signInWithEmailAndPassword(form.email, form.password)
       .then((res) => {
-        console.log('dataa respon', res);
         Fire.database()
           .ref('admin/')
           .once('value')
           .then((resDB) => {
-            console.log('data user :', resDB.val());
             if (resDB.val()) {
               navigation.replace('MainApp');
             }
           });
       })
       .catch((err) => {
-        console.log(err);
+        const errorMessage = err.message;
+        showMessage({
+          message: errorMessage,
+          type: 'default',
+          backgroundColor: 'red',
+          color: 'white',
+        });
       });
   };
   return (
@@ -41,6 +47,7 @@ const Login = ({navigation}) => {
             <Gap height={19} />
             <Input
               secureTextEntry
+              type="Password"
               label="Password"
               value={form.password}
               onChangeText={(value) => setForm('password', value)}

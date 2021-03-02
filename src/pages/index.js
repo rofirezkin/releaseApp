@@ -5,7 +5,8 @@ import Lokasi from './Lokasi';
 import Jadwal from './Jadwal';
 import Sukses from './Sukses';
 import Monitoring from './Monitoring';
-import Register from './Register';
+import FormTandon from './FormTandon';
+import Splash from './Splash';
 
 export {
   GetStarted,
@@ -15,5 +16,6 @@ export {
   Jadwal,
   Sukses,
   Monitoring,
-  Register,
+  FormTandon,
+  Splash,
 };

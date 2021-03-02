@@ -1,28 +1,28 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {ICCeklis, ICError, ICSuccess, ICWarning} from '../../../assets/icon';
+import {ICError, ICSuccess} from '../../../assets/icon';
 
-const JadwalLokasiTandon = ({type}) => {
+const JadwalLokasiTandon = ({data, peringatan, onPress}) => {
   const Icon = () => {
-    if (type === 'Ceklis') {
+    if (peringatan === 0 || peringatan === 1) {
       return <ICSuccess />;
-    }
-    if (type === 'Warning') {
+    } else {
       return <ICError />;
     }
-    return <ICError />;
   };
   return (
-    <View style={styles.container}>
-      <View style={styles.wrapper}>
-        <Text style={styles.title}>Kp. Sukapura Desa Mekarjaya </Text>
-        <View style={styles.wrapperLogo}>
-          <Icon style={styles.logo} />
+    <TouchableOpacity style={styles.container} onPress={onPress}>
+      <View style={styles.container}>
+        <View style={styles.wrapper}>
+          <Text style={styles.title}>{data.alamat}</Text>
+          <View style={styles.wrapperLogo}>
+            <Icon style={styles.logo} />
+          </View>
         </View>
+        <Text style={styles.desc}>kekeruhan : {data.kekeruhan}</Text>
       </View>
-      <Text style={styles.desc}>kekeruhan : 200</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -30,7 +30,7 @@ export default JadwalLokasiTandon;
 
 const styles = StyleSheet.create({
   container: {
-    width: 360,
+    width: '100%',
     height: 60,
     backgroundColor: 'white',
     marginBottom: 18,
