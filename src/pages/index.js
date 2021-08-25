@@ -7,8 +7,10 @@ import Sukses from './Sukses';
 import Monitoring from './Monitoring';
 import FormTandon from './FormTandon';
 import Splash from './Splash';
+import Profile from './Profile';
 
 export {
+  Profile,
   GetStarted,
   Login,
   Dashboard,

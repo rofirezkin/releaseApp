@@ -9,6 +9,7 @@ import {
   Sukses,
   FormTandon,
   Splash,
+  Profile,
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {ButtonNavigator} from '../components';
@@ -20,8 +21,8 @@ const MainApp = () => {
   return (
     <Tab.Navigator tabBar={(props) => <ButtonNavigator {...props} />}>
       <Tab.Screen name="Home" component={Dashboard} />
-      <Tab.Screen name="Form Tandon" component={FormTandon} />
       <Tab.Screen name="Lokasi" component={Lokasi} />
+      <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
 };
@@ -37,6 +38,11 @@ const Router = () => {
       <Stack.Screen
         name="GetStarted"
         component={GetStarted}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
         options={{headerShown: false}}
       />
       <Stack.Screen

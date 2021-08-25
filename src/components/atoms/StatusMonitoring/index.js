@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     padding: 8,
     marginTop: 35,
-    marginRight: 18,
+
     borderRadius: 10,
     shadowColor: '#000',
     shadowOffset: {

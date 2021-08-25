@@ -8,39 +8,12 @@ import {
   Header,
   StatusMonitoring,
   Kalender,
+  BoxIndikator,
 } from '../../components';
 
 const Monitoring = ({navigation, route}) => {
   const dataMonitoring = route.params;
   const peringatan = dataMonitoring.peringatan;
-
-  const GetPeringatan = () => {
-    if (peringatan === '0') {
-      return (
-        <View style={styles.keterangan}>
-          <Text style={styles.keteranganIndikator}>
-            Air Dalam keadaan bersih
-          </Text>
-        </View>
-      );
-    } else if (peringatan === '1') {
-      return (
-        <View style={styles.keterangan}>
-          <Text style={styles.keteranganIndikator}>
-            Air Dalam keadaan keruh
-          </Text>
-        </View>
-      );
-    } else {
-      return (
-        <View style={styles.keterangan}>
-          <Text style={styles.keteranganIndikator}>
-            Air Dalam Keadaan Kotor
-          </Text>
-        </View>
-      );
-    }
-  };
 
   return (
     <View style={styles.container}>
@@ -50,29 +23,10 @@ const Monitoring = ({navigation, route}) => {
       </View>
       <View style={styles.content}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={styles.indikator}>
-            <View style={styles.boxIndikator}>
-              <Text style={styles.title}>Indikator :</Text>
-              <View style={styles.keterangan(peringatan)}>
-                <GetPeringatan />
-              </View>
-              <Text style={styles.title}>Keterangan :</Text>
-              <Gap height={6} />
-              <View style={styles.warnaKeterangan}>
-                <View style={styles.hijau}>
-                  <Text style={styles.text}>Bersih</Text>
-                </View>
-                <View style={styles.kuning}>
-                  <Text style={styles.text}>Keruh</Text>
-                </View>
-                <View style={styles.merah}>
-                  <Text style={styles.text}>Kotor</Text>
-                </View>
-              </View>
-              <Text style={styles.title}>Lokasi :</Text>
-              <Text style={styles.lokasi}>{dataMonitoring.alamat}</Text>
-            </View>
-          </View>
+          <BoxIndikator
+            peringatan={peringatan}
+            alamat={dataMonitoring.alamat}
+          />
           <View>
             <View style={styles.warpStatus}>
               <StatusMonitoring status="DATA" />
@@ -82,7 +36,8 @@ const Monitoring = ({navigation, route}) => {
               />
             </View>
             <Gap height={20} />
-            <Text style={styles.title}>Jadwal Pembersihan :</Text>
+            <Text style={styles.titleJadwal}>Jadwal Pembersihan :</Text>
+            <Gap height={20} />
             <Kalender
               bulan={dataMonitoring.jadwal}
               bulanKedua={dataMonitoring.jadwal2}
@@ -120,7 +75,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   content: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 18,
     paddingTop: 20,
 
     paddingBottom: 50,
@@ -137,86 +92,14 @@ const styles = StyleSheet.create({
     marginBottom: 14,
     paddingTop: 10,
   },
-  indikator: {
-    width: '100%',
-    height: 252,
-    borderRadius: 10,
-    backgroundColor: '#FFFCFC',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
-    elevation: 6,
-  },
-  boxIndikator: {
-    paddingHorizontal: 13,
-    paddingVertical: 5,
-  },
-  title: {
-    fontSize: 15,
-    fontFamily: 'Assistant-SemiBold',
-    marginBottom: 8,
-  },
-  keterangan: (peringatan) => ({
-    backgroundColor:
-      peringatan === '0'
-        ? '#4BD8A5'
-        : peringatan === '1'
-        ? '#ECD55C'
-        : '#F86D70',
-    width: '100%',
-    height: 76,
-    borderRadius: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 8,
-  }),
-  keteranganIndikator: {
-    fontSize: 15,
-    fontFamily: 'Assistant-SemiBold',
-    color: '#6C7098',
-  },
-  warnaKeterangan: {
+
+  warpStatus: {
+    marginHorizontal: 8,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 20,
   },
-  hijau: {
-    width: 78,
-    height: 15,
-    backgroundColor: '#4BD8A5',
-    borderRadius: 5,
-    alignItems: 'center',
-  },
-  kuning: {
-    width: 78,
-    height: 15,
-    backgroundColor: '#ECD55C',
-    borderRadius: 5,
-    alignItems: 'center',
-  },
-  merah: {
-    width: 78,
-    height: 15,
-    backgroundColor: '#F86D70',
-    borderRadius: 5,
-    alignItems: 'center',
-  },
-  text: {
-    marginTop: 17,
-    fontSize: 12,
-    fontFamily: 'Assistant-SemiBold',
-    color: '#A8A8A8',
-  },
-  lokasi: {
-    fontFamily: 'Assistant-SemiBold',
-    fontSize: 15,
-    color: '#6C7098',
-  },
-  warpStatus: {
-    flexDirection: 'row',
+  titleJadwal: {
+    marginHorizontal: 8,
+    fontSize: 16,
   },
 });

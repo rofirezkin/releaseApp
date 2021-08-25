@@ -15,7 +15,7 @@ const TabItem = ({title, active, onPress, onLongPress}) => {
     if (title === 'Home') {
       return active ? <ICHomeActive /> : <ICHomeInactive />;
     }
-    if (title === 'Form Tandon') {
+    if (title === 'Profile') {
       return active ? <ICJadwalActive /> : <ICJadwalInactive />;
     }
     if (title === 'Lokasi') {

@@ -15,17 +15,6 @@ const Dashboard = ({navigation}) => {
     getDataTandonBersih();
   }, []);
 
-  const signOut = () => {
-    Fire.auth()
-      .signOut()
-      .then(() => {
-        navigation.replace('GetStarted');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   const getDataTandonBersih = () => {
     const ref = Fire.database()
       .ref('dataTandon/')
@@ -65,17 +54,14 @@ const Dashboard = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Header type="Dashboard" />
-      <View style={styles.arrow}>
-        <TouchableOpacity onPress={signOut}>
-          <Logout />
-        </TouchableOpacity>
-      </View>
+
+      <Gap height={15} />
       <View style={styles.grafik}>
         <ILGrafik />
       </View>
       <Text style={styles.title}>Laporan Monitoring Minggu ini : </Text>
       <View style={styles.cardGrafik}>
-        <GrafikData status="DIBERSIHKAN" data={jumlahDataBersih} />
+        <GrafikData status="KEADAAN BERSIH" data={jumlahDataBersih} />
         <GrafikData status="KOTOR" data={jumlahDataKotor} />
       </View>
       <Text style={styles.desc}>Lokasi Tandon Kotor :</Text>
@@ -119,7 +105,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   grafik: {
-    marginTop: 17,
+    marginTop: 25,
     alignItems: 'center',
   },
   content: {

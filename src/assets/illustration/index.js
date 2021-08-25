@@ -5,5 +5,15 @@ import ILTime from './time.svg';
 import ILMap from './Map.svg';
 import ILSearch from './search.svg';
 import ILKonfirmasi from './konfirmasi.svg';
+import ILLisProfile from './ListProfile.svg';
 
-export {ILLogo, ILHello, ILGrafik, ILTime, ILMap, ILSearch, ILKonfirmasi};
+export {
+  ILLisProfile,
+  ILLogo,
+  ILHello,
+  ILGrafik,
+  ILTime,
+  ILMap,
+  ILSearch,
+  ILKonfirmasi,
+};

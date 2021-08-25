@@ -188,80 +188,82 @@ const Link = ({bulan, bulanKedua}) => {
     }
   };
   return (
-    <View style={styles.boxCal}>
-      <View style={{flexDirection: 'row'}}>
-        <View style={styles.jadwal}>
-          <Text style={styles.textJadwal}>Jan</Text>
-          <View style={styles.tanda}>
-            <GetJan />
+    <View style={styles.container}>
+      <View style={styles.boxCal}>
+        <View style={{flexDirection: 'row'}}>
+          <View style={styles.jadwal}>
+            <Text style={styles.textJadwal}>Jan</Text>
+            <View style={styles.tanda}>
+              <GetJan />
+            </View>
+          </View>
+          <View style={styles.jadwal}>
+            <Text style={styles.textJadwal}>Feb</Text>
+            <View style={styles.tanda}>
+              <GetFeb />
+            </View>
+          </View>
+          <View style={styles.jadwal}>
+            <Text style={styles.textJadwal}>Mar</Text>
+            <View style={styles.tanda}>
+              <GetMar />
+            </View>
+          </View>
+          <View style={styles.jadwal}>
+            <Text style={styles.textJadwal}>Apr</Text>
+            <View style={styles.tanda}>
+              <GetApr />
+            </View>
+          </View>
+          <View style={styles.jadwal}>
+            <Text style={styles.textJadwal}>Mei</Text>
+            <View style={styles.tanda}>
+              <GetMei />
+            </View>
+          </View>
+          <View style={styles.jadwal}>
+            <Text style={styles.textJadwal}>Jun</Text>
+            <View style={styles.tanda}>
+              <GetJun />
+            </View>
           </View>
         </View>
-        <View style={styles.jadwal}>
-          <Text style={styles.textJadwal}>Feb</Text>
-          <View style={styles.tanda}>
-            <GetFeb />
+        <View style={{flexDirection: 'row', paddingTop: 10}}>
+          <View style={styles.jadwal}>
+            <Text style={styles.textJadwal}>Jul</Text>
+            <View style={styles.tanda}>
+              <GetJul />
+            </View>
           </View>
-        </View>
-        <View style={styles.jadwal}>
-          <Text style={styles.textJadwal}>Mar</Text>
-          <View style={styles.tanda}>
-            <GetMar />
+          <View style={styles.jadwal}>
+            <Text style={styles.textJadwal}>Agu</Text>
+            <View style={styles.tanda}>
+              <GetAgu />
+            </View>
           </View>
-        </View>
-        <View style={styles.jadwal}>
-          <Text style={styles.textJadwal}>Apr</Text>
-          <View style={styles.tanda}>
-            <GetApr />
+          <View style={styles.jadwal}>
+            <Text style={styles.textJadwal}>Sep</Text>
+            <View style={styles.tanda}>
+              <GetSep />
+            </View>
           </View>
-        </View>
-        <View style={styles.jadwal}>
-          <Text style={styles.textJadwal}>Mei</Text>
-          <View style={styles.tanda}>
-            <GetMei />
+          <View style={styles.jadwal}>
+            <Text style={styles.textJadwal}>Okt</Text>
+            <View style={styles.tanda}>
+              <GetOkt />
+            </View>
           </View>
-        </View>
-        <View style={styles.jadwal}>
-          <Text style={styles.textJadwal}>Jun</Text>
-          <View style={styles.tanda}>
-            <GetJun />
+          <View style={styles.jadwal}>
+            <Text style={styles.textJadwal}>Nov</Text>
+            <View style={styles.tanda}>
+              <GetNov />
+            </View>
           </View>
-        </View>
-      </View>
-      <View style={{flexDirection: 'row', paddingTop: 10}}>
-        <View style={styles.jadwal}>
-          <Text style={styles.textJadwal}>Jul</Text>
-          <View style={styles.tanda}>
-            <GetJul />
-          </View>
-        </View>
-        <View style={styles.jadwal}>
-          <Text style={styles.textJadwal}>Agu</Text>
-          <View style={styles.tanda}>
-            <GetAgu />
-          </View>
-        </View>
-        <View style={styles.jadwal}>
-          <Text style={styles.textJadwal}>Sep</Text>
-          <View style={styles.tanda}>
-            <GetSep />
-          </View>
-        </View>
-        <View style={styles.jadwal}>
-          <Text style={styles.textJadwal}>Okt</Text>
-          <View style={styles.tanda}>
-            <GetOkt />
-          </View>
-        </View>
-        <View style={styles.jadwal}>
-          <Text style={styles.textJadwal}>Nov</Text>
-          <View style={styles.tanda}>
-            <GetNov />
-          </View>
-        </View>
-        <View style={styles.jadwal}>
-          <Text style={styles.textJadwal}>Des</Text>
-          <View style={styles.tanda}>
-            <GetDes />
+          <View style={styles.jadwal}>
+            <Text style={styles.textJadwal}>Des</Text>
+            <View style={styles.tanda}>
+              <GetDes />
+            </View>
           </View>
         </View>
       </View>
@@ -272,10 +274,13 @@ const Link = ({bulan, bulanKedua}) => {
 export default Link;
 
 const styles = StyleSheet.create({
+  container: {
+    marginHorizontal: 8,
+  },
   boxCal: {
     paddingTop: 10,
 
-    width: 342,
+    width: '100%',
     height: 150,
     backgroundColor: '#FFFCFC',
     borderRadius: 10,

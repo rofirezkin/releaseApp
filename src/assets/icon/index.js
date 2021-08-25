@@ -15,8 +15,10 @@ import WarningIndikator from './warningInd.svg';
 import JadwalProcess from './cached_kal.svg';
 import JadwalClean from './done_kal.svg';
 import Logout from './Vector.svg';
+import IconAvatar from './avatar.jpeg';
 
 export {
+  IconAvatar,
   Logout,
   ICHomeActive,
   ICJadwalActive,
